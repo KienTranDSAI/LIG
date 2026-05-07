@@ -1,0 +1,16 @@
+# Doc 5 style: pick model via backbone + dataset
+python eval_xai_metrics.py --backbone bert --dataset rotten --n 200
+
+# Cross all 3 datasets with a fixed backbone
+for D in sst2 rotten imdb; do
+  python eval_xai_metrics.py --backbone distilbert --dataset $D --n 200 \
+      --csv results_distilbert_$D.csv --sample-dump sentences_$D.txt
+done
+
+# Legacy mode (explicit HF model, fallback sentences)
+python eval_xai_metrics.py --model distilbert-base-uncased-finetuned-sst-2-english \
+    --source fallback --n 8
+
+# Override length filter (e.g. shorter IMDB reviews only)
+python eval_xai_metrics.py --backbone bert --dataset imdb \
+    --min-words 30 --max-words 80 --n 100

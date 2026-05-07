@@ -1,0 +1,18 @@
+.git
+.vscode
+.idea
+.DS_Store
+__pycache__
+*.pyc
+env/
+venv/
+.venv/
+.env
+.claude
+result/
+results/
+.push.sh
+*.png
+
+# Benchmark images — download from Google Drive (see README)
+benchmark_50/
